@@ -35,9 +35,9 @@ public class PageClients {
 
             var tabsClients = Jt.tabs(List.of("Create", "Update", "Delete", "List")).key("tabsClient").use();
 
-
-            
             formCreateClient(tabsClients);
+            formUpdateClient(tabsClients);
+            formDeleteClient(tabsClients);
             tableClientList(tabsClients);
 
             // if (clientList == null || clientList.isEmpty()) {
@@ -132,13 +132,13 @@ public class PageClients {
 
         var formCreateClient = Jt.form().key("formCreateClient").use(tab.tab("Create"));
 
-        String nameClient = Jt.textInput("name").key("nameClient")
+        String nameClient = Jt.textInput("name").key("nameClientCreate")
                 .use(formCreateClient);
-        String contactClient = Jt.textInput("contact").key("contactClient")
+        String contactClient = Jt.textInput("contact").key("contactClientCreate")
                 .use(formCreateClient);
-        String documentClient = Jt.textInput("document").key("documentClient")
+        String documentClient = Jt.textInput("document").key("documentClientCreate")
                 .use(formCreateClient);
-        String documentTypeClient = Jt.textInput("document - type").key("documentTypeClient")
+        String documentTypeClient = Jt.textInput("document - type").key("documentTypeClientCreate")
                 .use(formCreateClient);
 
         boolean submittedCreate = Jt.formSubmitButton("create client")
@@ -151,10 +151,72 @@ public class PageClients {
                 Jt.success("SUCCESS - CREATE").key("tooltipSuccessCreate").use();
 
             } catch (Exception exception) {
-                Jt.error("ERROR - CREATE").key("tooltipSuccessDelete").use();
+                Jt.error("ERROR - CREATE").key("tooltipErrorCreate").use();
                 System.out.println(exception.getMessage());
             }
         }
+    }
+
+    public void formUpdateClient(Tabs tab) {
+
+        var formUpdateClient = Jt.form().key("formUpdateClient").use(tab.tab("Update"));
+
+        String nameClient = Jt.textInput("name").key("nameClientUpdate")
+                .use(formUpdateClient);
+        String contactClient = Jt.textInput("contact").key("contactClientUpdate")
+                .use(formUpdateClient);
+        String documentClient = Jt.textInput("document").key("documentClientUpdate")
+                .use(formUpdateClient);
+        String documentTypeClient = Jt.textInput("document - type").key("documentTypeClientUpdate")
+                .use(formUpdateClient);
+
+        boolean submittedCreate = Jt.formSubmitButton("update client")
+                .key("formUpdateButton").use(formUpdateClient);
+
+        if (submittedCreate) {
+            try {
+                ClientTree updateClient = new ClientTree(nameClient, contactClient, documentClient, documentTypeClient);
+                ClientTree client = binaryTree.search(documentClient);
+
+                if (client == null) {
+                    throw new Exception("CLIENT NOT FOUND");
+                }
+
+                binaryTree.delete(client.getDocumentClient());
+                binaryTree.insert(updateClient);
+
+                Jt.success("SUCCESS - UPDATE").key("tooltipSuccessUpdate").use();
+
+            } catch (Exception exception) {
+                Jt.error("ERROR - UPDATE").key("tooltipErrorUpdate").use();
+                System.out.println(exception.getMessage());
+            }
+        }
+
+    }
+
+    public void formDeleteClient(Tabs tab){
+
+        var formDeleteClient = Jt.form().key("formDeleteClient").use(tab.tab("Delete"));
+
+        String documentClient = Jt.textInput("document").key("documentClientDelete")
+                .use(formDeleteClient);
+
+        boolean submittedDelete = Jt.formSubmitButton("delete client")
+                .key("formDeleteButton").use(formDeleteClient);
+
+        if (submittedDelete) {
+            try {
+
+                binaryTree.delete(documentClient);
+                Jt.success("SUCCESS - DELETE").key("tooltipSuccessDelete").use();
+
+            } catch (Exception exception) {
+                Jt.error("ERROR - UPDATE").key("tooltipErrorDelete").use();
+                System.out.println(exception.getMessage());
+            }
+        }
+
     }
 
     public void tableClientList(Tabs tab) {

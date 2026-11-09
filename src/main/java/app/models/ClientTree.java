@@ -20,7 +20,7 @@ public class ClientTree {
             String documentTypeClient
 
     ) {
-
+        
         this.nameClient = nameClient;
         this.contactClient = contactClient;
         this.documentClient = documentClient;
