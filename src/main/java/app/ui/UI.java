@@ -6,12 +6,12 @@ import io.javelit.core.Jt;
 
 public class UI {
 
-        private final Database database;
+        // private final Database database;
         private final PageClients pageClients;
 
-        public UI(Database database) {
-                this.database = database;
-                this.pageClients = new PageClients(database);
+        public UI() {
+                // this.database = database;
+                this.pageClients = new PageClients();
         }
 
         public void navigation() {

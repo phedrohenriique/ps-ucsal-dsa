@@ -140,6 +140,7 @@ class Database {
                 PreparedStatement stmt = connection.prepareStatement(sql.insertClient());) {
 
             for (Integer i = 0; i < 200000; i++) {
+
                 try {
 
                     stmt.setString(1, getRandomName());
@@ -155,12 +156,17 @@ class Database {
 
                     this.rows++;
 
+                    System.out.println("ROWS INSERTED - " + this.rows);
+
+                    Thread.sleep(500); // Pause for 1000 milliseconds (1 seconds)
+
+                } catch (InterruptedException exception) {
+                    System.out.println("ERROR: " + exception.getMessage());
+                    Thread.currentThread().interrupt(); // Restore the interrupted status
                 } catch (Exception exception) {
                     System.out.println("ERROR: " + exception.getMessage());
 
                 }
-
-                System.out.println("ROWS INSERTED - " + this.rows);
 
             }
 

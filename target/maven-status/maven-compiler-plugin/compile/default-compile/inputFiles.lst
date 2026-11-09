@@ -2,6 +2,11 @@ C:\Users\phenn\Desktop\projects\ps-ucsal-dsa\src\main\java\app\App.java
 C:\Users\phenn\Desktop\projects\ps-ucsal-dsa\src\main\java\app\configuration\AppConstants.java
 C:\Users\phenn\Desktop\projects\ps-ucsal-dsa\src\main\java\app\configuration\Configuration.java
 C:\Users\phenn\Desktop\projects\ps-ucsal-dsa\src\main\java\app\models\Client.java
+C:\Users\phenn\Desktop\projects\ps-ucsal-dsa\src\main\java\app\models\ClientTree.java
+C:\Users\phenn\Desktop\projects\ps-ucsal-dsa\src\main\java\app\models\Message.java
+C:\Users\phenn\Desktop\projects\ps-ucsal-dsa\src\main\java\app\models\MessageTree.java
+C:\Users\phenn\Desktop\projects\ps-ucsal-dsa\src\main\java\app\models\Ticket.java
+C:\Users\phenn\Desktop\projects\ps-ucsal-dsa\src\main\java\app\models\TicketTree.java
 C:\Users\phenn\Desktop\projects\ps-ucsal-dsa\src\main\java\app\services\BinaryTree.java
 C:\Users\phenn\Desktop\projects\ps-ucsal-dsa\src\main\java\app\services\Database.java
 C:\Users\phenn\Desktop\projects\ps-ucsal-dsa\src\main\java\app\services\DataSQL.java

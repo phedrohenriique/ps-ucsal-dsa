@@ -5,7 +5,8 @@ public class DataSQL {
     public String getClientList(){
         String sql = """
             SELECT *
-            FROM clients;
+            FROM clients
+            ORDER BY id_client ASC;
         """;
 
         return sql;

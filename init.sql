@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS clients (
     id_client INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name_client VARCHAR(100),
     contact_client VARCHAR(100),
-    document_client VARCHAR(14) NOT NULL,
+    document_client VARCHAR(14) UNIQUE NOT NULL,
     document_type_client VARCHAR(4) NOT NULL 
         CHECK (document_type_client IN (
             'CPF',
@@ -56,6 +56,9 @@ CREATE TABLE IF NOT EXISTS messages (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_ticket) REFERENCES tickets(id_ticket) ON DELETE CASCADE
 );
+
+CREATE UNIQUE INDEX idx_document_client ON clients (document_client);
+
 
 COMMIT;
 

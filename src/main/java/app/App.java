@@ -27,8 +27,8 @@ public class App {
         try {
 
             Configuration configuration = new Configuration();
-            Database database = new Database(configuration);
-            UI ui = new UI(database);
+            // Database database = new Database(configuration);
+            UI ui = new UI();
 
             var server = Server.builder(
                     () -> ui.navigation(),
@@ -36,10 +36,6 @@ public class App {
             ).build();
 
             server.start();
-
-        } catch (SQLException exception) {
-
-            System.err.println("ERROR : " + exception.getMessage());
 
         } catch (Exception exception) {
 
