@@ -1,10 +1,12 @@
 package app.services;
 
+// AVL Binary Tree or Balanced Binary Tree
+
 import app.models.Client;
 
 public class BinaryTree {
 
-    private Node root;
+    private NodeTree root;
     private int size;
 
     public BinaryTree() {
@@ -21,10 +23,10 @@ public class BinaryTree {
         root = insert(root, client);
     }
 
-    private Node insert(Node current, Client client) {
+    private NodeTree insert(NodeTree current, Client client) {
         if (current == null) {
             size++;
-            return new Node(client);
+            return new NodeTree(client);
         }
 
         int comparison = client.getDocumentClient()
@@ -49,7 +51,7 @@ public class BinaryTree {
             return null;
         }
 
-        Node current = root;
+        NodeTree current = root;
 
         while (current != null) {
             int comparison = documentClient.compareTo(
@@ -75,7 +77,7 @@ public class BinaryTree {
         }
     }
 
-    private Node delete(Node current, String documentClient) {
+    private NodeTree delete(NodeTree current, String documentClient) {
         if (current == null) {
             return null;
         }
@@ -96,7 +98,7 @@ public class BinaryTree {
                 return current.left;
             }
 
-            Node successor = findMin(current.right);
+            NodeTree successor = findMin(current.right);
 
             current.client = successor.client;
 
@@ -109,7 +111,7 @@ public class BinaryTree {
     }
 
     // FIND MINIMUM
-    private Node findMin(Node current) {
+    private NodeTree findMin(NodeTree current) {
         while (current.left != null) {
             current = current.left;
         }
@@ -118,47 +120,47 @@ public class BinaryTree {
     }
 
     // AVL BALANCING
-    private Node balance(Node node) {
-        updateHeight(node);
+    private NodeTree balance(NodeTree NodeTree) {
+        updateHeight(NodeTree);
 
-        int balanceFactor = getBalanceFactor(node);
+        int balanceFactor = getBalanceFactor(NodeTree);
 
         if (balanceFactor > 1) {
-            if (getBalanceFactor(node.left) < 0) {
-                node.left = rotateLeft(node.left);
+            if (getBalanceFactor(NodeTree.left) < 0) {
+                NodeTree.left = rotateLeft(NodeTree.left);
             }
 
-            return rotateRight(node);
+            return rotateRight(NodeTree);
         }
 
         if (balanceFactor < -1) {
-            if (getBalanceFactor(node.right) > 0) {
-                node.right = rotateRight(node.right);
+            if (getBalanceFactor(NodeTree.right) > 0) {
+                NodeTree.right = rotateRight(NodeTree.right);
             }
 
-            return rotateLeft(node);
+            return rotateLeft(NodeTree);
         }
 
-        return node;
+        return NodeTree;
     }
 
-    private int height(Node node) {
-        return node == null ? 0 : node.height;
+    private int height(NodeTree NodeTree) {
+        return NodeTree == null ? 0 : NodeTree.height;
     }
 
-    private void updateHeight(Node node) {
-        node.height = 1 + Math.max(
-                height(node.left),
-                height(node.right));
+    private void updateHeight(NodeTree NodeTree) {
+        NodeTree.height = 1 + Math.max(
+                height(NodeTree.left),
+                height(NodeTree.right));
     }
 
-    private int getBalanceFactor(Node node) {
-        return height(node.left) - height(node.right);
+    private int getBalanceFactor(NodeTree NodeTree) {
+        return height(NodeTree.left) - height(NodeTree.right);
     }
 
-    private Node rotateRight(Node y) {
-        Node x = y.left;
-        Node subtree = x.right;
+    private NodeTree rotateRight(NodeTree y) {
+        NodeTree x = y.left;
+        NodeTree subtree = x.right;
 
         x.right = y;
         y.left = subtree;
@@ -169,9 +171,9 @@ public class BinaryTree {
         return x;
     }
 
-    private Node rotateLeft(Node x) {
-        Node y = x.right;
-        Node subtree = y.left;
+    private NodeTree rotateLeft(NodeTree x) {
+        NodeTree y = x.right;
+        NodeTree subtree = y.left;
 
         y.left = x;
         x.right = subtree;
@@ -202,7 +204,7 @@ public class BinaryTree {
     }
 
     private void inOrderTraversal(
-            Node current,
+            NodeTree current,
             Client[] clients,
             int[] index) {
         if (current == null) {
@@ -219,13 +221,13 @@ public class BinaryTree {
 
 }
 
-class Node {
+class NodeTree {
     Client client;
-    Node left;
-    Node right;
+    NodeTree left;
+    NodeTree right;
     int height;
 
-    Node(Client client) {
+    NodeTree(Client client) {
         this.client = client;
         this.left = null;
         this.right = null;

@@ -1,8 +1,13 @@
+app\ui\pages\PageTickets.class
 app\App.class
 app\models\Client$DocumentType.class
 app\models\Client.class
-app\services\Node.class
-app\ui\pages\PageClients.class
+app\services\QueueNode.class
 app\models\Ticket.class
 app\ui\UI.class
+app\ui\pages\PageClients.class
+app\services\NodeLinkedList.class
+app\services\NodeTree.class
 app\services\BinaryTree.class
+app\services\Queue.class
+app\services\LinkedList.class
