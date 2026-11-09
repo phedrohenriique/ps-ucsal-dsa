@@ -11,10 +11,6 @@ package app;
 // mvn dependency:tree - check for maven dependencies
 // mvn -f scripts/script-pom.xml clean compile exec:java
 
-import java.sql.SQLException;
-
-import app.configuration.Configuration;
-import app.services.Database;
 import app.ui.UI;
 import io.javelit.core.Server;
 
@@ -26,8 +22,6 @@ public class App {
 
         try {
 
-            Configuration configuration = new Configuration();
-            // Database database = new Database(configuration);
             UI ui = new UI();
 
             var server = Server.builder(

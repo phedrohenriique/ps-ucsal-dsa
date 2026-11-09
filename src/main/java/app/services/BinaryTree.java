@@ -1,7 +1,6 @@
 package app.services;
 
 import app.models.Client;
-import app.models.ClientTree;
 
 public class BinaryTree {
 
@@ -14,7 +13,7 @@ public class BinaryTree {
     }
 
     // INSERT
-    public void insert(ClientTree client) {
+    public void insert(Client client) {
         if (client == null || client.getDocumentClient() == null) {
             throw new IllegalArgumentException("Invalid client");
         }
@@ -22,7 +21,7 @@ public class BinaryTree {
         root = insert(root, client);
     }
 
-    private Node insert(Node current, ClientTree client) {
+    private Node insert(Node current, Client client) {
         if (current == null) {
             size++;
             return new Node(client);
@@ -45,7 +44,7 @@ public class BinaryTree {
     }
 
     // SEARCH
-    public ClientTree search(String documentClient) {
+    public Client search(String documentClient) {
         if (documentClient == null) {
             return null;
         }
@@ -192,8 +191,8 @@ public class BinaryTree {
         return root == null;
     }
 
-    public ClientTree[] getAll() {
-        ClientTree[] clients = new ClientTree[size];
+    public Client[] getAll() {
+        Client[] clients = new Client[size];
 
         int[] index = { 0 };
 
@@ -204,7 +203,7 @@ public class BinaryTree {
 
     private void inOrderTraversal(
             Node current,
-            ClientTree[] clients,
+            Client[] clients,
             int[] index) {
         if (current == null) {
             return;
@@ -221,12 +220,12 @@ public class BinaryTree {
 }
 
 class Node {
-    ClientTree client;
+    Client client;
     Node left;
     Node right;
     int height;
 
-    Node(ClientTree client) {
+    Node(Client client) {
         this.client = client;
         this.left = null;
         this.right = null;

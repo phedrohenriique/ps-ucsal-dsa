@@ -1,19 +1,12 @@
 package app.ui;
 
-import app.services.Database;
 import app.ui.pages.PageClients;
 import io.javelit.core.Jt;
 
 public class UI {
 
-        // private final Database database;
-        private final PageClients pageClients;
-
-        public UI() {
-                // this.database = database;
-                this.pageClients = new PageClients();
-        }
-
+        private final PageClients pageClients = new PageClients();;
+        
         public void navigation() {
 
                 var page = Jt.navigation(
