@@ -3,7 +3,6 @@ package app.ui.pages;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import app.models.Client;
