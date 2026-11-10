@@ -21,7 +21,7 @@ public class PageTickets {
         pageTickets();
     }
 
-    public void pageTickets(){
+    public void pageTickets() {
 
         // GetTicket will show internal messages from linked list
         // List will set show the queues in line waiting for response and resolution
@@ -30,10 +30,11 @@ public class PageTickets {
         var tabsTickets = Jt.tabs(List.of("Create", "Update", "GetTicket", "List")).key("tabsTickets").use();
 
         formCreateTicket(tabsTickets);
+        formUpdateTicket(tabsTickets);
+        tableTicketById(tabsTickets);
         tableTicketList(tabsTickets);
 
     }
-
 
     public void formCreateTicket(Tabs tab) {
 
@@ -63,6 +64,97 @@ public class PageTickets {
         }
     }
 
+    public void formUpdateTicket(Tabs tab) {
+
+        var formUpdateTicket = Jt.form().key("formUpdateTicket").use(tab.tab("Update"));
+
+        String idTicket = Jt.textInput("id - ticket").key("idTicketUpdate")
+                .use(formUpdateTicket);
+        String messageTicket = Jt.textInput("message").key("documentClientTicketUpdate")
+                .use(formUpdateTicket);
+        String statusTicket = Jt.textInput("status").key("statusTicketUpdate")
+                .use(formUpdateTicket);
+
+        boolean submittedUpdate = Jt.formSubmitButton("update ticket")
+                .key("formUpdateButton").use(formUpdateTicket);
+
+        if (submittedUpdate) {
+            try {
+
+                LinkedList<Ticket> queueTicketList = queue.getAll();
+                Ticket[] ticketList = queueTicketList.toArray(new Ticket[queueTicketList.size()]);
+
+                for (Ticket ticket : ticketList) {
+                    if (ticket.getIdTicket().equals(idTicket)) {
+                        ticket.addMessage(messageTicket);
+                        if(!statusTicket.equals("") || statusTicket.equals("ACTIVE")){
+                            ticket.setStatus(statusTicket);
+                        }
+                        Jt.success("SUCCESS - UPDATE ").key("tooltipSuccessUpdate").use();
+                    }
+                }
+
+            } catch (Exception exception) {
+                Jt.error("ERROR - UPDATE").key("tooltipErrorUpdate").use();
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    public void tableTicketById(Tabs tab) {
+
+        var formGetTicket = Jt.form().key("formGetTicket").use(tab.tab("GetTicket"));
+
+        String idTicket = Jt.textInput("id - ticket").key("idTicketGetById")
+                .use(formGetTicket);
+
+        boolean submittedGetTicket = Jt.formSubmitButton("get ticket")
+                .key("formTicketGetByIdButton").use(formGetTicket);
+
+        if (submittedGetTicket) {
+
+            try {
+
+                LinkedList<Ticket> queueTicketList = queue.getAll();
+                Ticket[] ticketList = queueTicketList.toArray(new Ticket[queueTicketList.size()]);
+
+                for (Ticket ticket : ticketList) {
+
+                    if (ticket.getIdTicket().equals(idTicket)) {
+
+                        Jt.success("SUCCESS - GET TICKET").key("tooltipSuccessGetTicket").use();
+
+                        List<Map<String, String>> paramsList = new ArrayList<>();
+                        String[] messageList = ticket.getMessages();
+                        int n = 0;
+
+                        for (String message : messageList) {
+
+                            Map<String, String> row = new LinkedHashMap<>();
+
+                            row.put("step", String.valueOf(n));
+                            row.put("action", message);
+                            paramsList.add(row);
+
+                            n++;
+                        }
+
+                        var tableGetTicketById = Jt.container().key("tableGetTicketById")
+                                .height(300)
+                                .use(tab.tab("GetTicket"));
+                        Jt.table(paramsList).use(tableGetTicketById);
+
+                    }
+                }
+
+            } catch (Exception exception) {
+                Jt.error("ERROR - UPDATE").key("tooltipErrorDelete").use();
+                System.out.println(exception.getMessage());
+            }
+        }
+
+    }
+
     public void tableTicketList(Tabs tab) {
 
         LinkedList<Ticket> linkedListTicket = queue.getAll();
@@ -75,7 +167,7 @@ public class PageTickets {
 
             Map<String, Object> row = new LinkedHashMap<>();
             row.put("id", ticket.getIdTicket());
-            row.put("document - client",ticket.getDocumentClient());
+            row.put("document - client", ticket.getDocumentClient());
             row.put("status", ticket.getStatusTicket());
 
             paramsList.add(row);
@@ -87,5 +179,5 @@ public class PageTickets {
         Jt.table(paramsList).use(tableTicketList);
 
     }
-    
+
 }

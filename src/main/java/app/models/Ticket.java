@@ -1,15 +1,14 @@
 package app.models;
 
-import app.services.LinkedList;;;
+import app.services.LinkedList;
 
 public class Ticket {
 
-    private final LinkedList linkedList = new LinkedList<>();
+    private final LinkedList<String> messagesTicket = new LinkedList<>();
     private String idTicket;
     private String documentClient;
     private String contentTicket;
     private String statusTicket = "ACTIVE";
-    private LinkedList<String> messagesTicket;
 
     public Ticket(
 
@@ -41,9 +40,26 @@ public class Ticket {
         return statusTicket;
     }
 
+    public void setStatus(String value){
+        this.statusTicket = value;
+    }
+
+    public String[] getMessages() {
+
+        String[] messageList = messagesTicket.toArray(new String[messagesTicket.size()]);
+        return messageList;
+
+    }
+
     public void addMessage(String value) {
 
         this.messagesTicket.insert(value);
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket(id=" + this.getIdTicket() + ", document=" + this.getDocumentClient() + ", status="
+                + this.getStatusTicket() + ")";
     }
 
 }

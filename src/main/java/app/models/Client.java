@@ -44,4 +44,9 @@ public class Client {
         return nameClient;
     }
 
+    @Override 
+    public String toString(){
+        return "Client(name="+this.getNameClient()+", document="+this.getDocumentClient()+", documentType="+this.getDocumentTypeClient()+")";
+    }
+
 }
