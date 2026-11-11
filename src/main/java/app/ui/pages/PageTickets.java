@@ -23,10 +23,6 @@ public class PageTickets {
 
     public void pageTickets() {
 
-        // GetTicket will show internal messages from linked list
-        // List will set show the queues in line waiting for response and resolution
-        // Tickets will be created in the Queue
-
         var tabsTickets = Jt.tabs(List.of("Create", "Update", "GetTicket", "List")).key("tabsTickets").use();
 
         formCreateTicket(tabsTickets);

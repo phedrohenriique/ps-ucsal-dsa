@@ -12,7 +12,6 @@ public class LinkedList<T> {
         this.size = 0;
     }
 
-    // INSERT
     public void insert(T item) {
         if (item == null) {
             throw new IllegalArgumentException("Item cannot be null");
@@ -31,7 +30,6 @@ public class LinkedList<T> {
         size++;
     }
 
-    // SEARCH
     public T search(T item) {
         if (item == null) {
             return null;
@@ -50,7 +48,6 @@ public class LinkedList<T> {
         return null;
     }
 
-    // REMOVE
     public boolean remove(T item) {
         if (item == null || head == null) {
             return false;
@@ -88,7 +85,6 @@ public class LinkedList<T> {
         return false;
     }
 
-    // GET ALL
     public Object[] getAll() {
         Object[] items = new Object[size];
 
@@ -103,7 +99,6 @@ public class LinkedList<T> {
         return items;
     }
 
-    // AUXILIARY METHODS
     public int size() {
         return size;
     }
@@ -113,23 +108,22 @@ public class LinkedList<T> {
     }
 
     public T[] toArray(T[] array) {
-    if (array.length < size) {
-        throw new IllegalArgumentException("Array is too small");
+        if (array.length < size) {
+            throw new IllegalArgumentException("Array is too small");
+        }
+
+        NodeLinkedList<T> current = head;
+        int index = 0;
+
+        while (current != null) {
+            array[index++] = current.data;
+            current = current.next;
+        }
+
+        return array;
     }
-
-    NodeLinkedList<T> current = head;
-    int index = 0;
-
-    while (current != null) {
-        array[index++] = current.data;
-        current = current.next;
-    }
-
-    return array;
-}
 }
 
-// NodeLinkedList
 class NodeLinkedList<T> {
 
     T data;

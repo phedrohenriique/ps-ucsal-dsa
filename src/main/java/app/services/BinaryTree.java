@@ -1,7 +1,5 @@
 package app.services;
 
-// AVL Binary Tree or Balanced Binary Tree
-
 import app.models.Client;
 
 public class BinaryTree {
@@ -14,7 +12,6 @@ public class BinaryTree {
         this.size = 0;
     }
 
-    // INSERT
     public void insert(Client client) {
         if (client == null || client.getDocumentClient() == null) {
             throw new IllegalArgumentException("Invalid client");
@@ -37,7 +34,6 @@ public class BinaryTree {
         } else if (comparison > 0) {
             current.right = insert(current.right, client);
         } else {
-            // Document already exists: replace client
             current.client = client;
             return current;
         }
@@ -45,7 +41,6 @@ public class BinaryTree {
         return balance(current);
     }
 
-    // SEARCH
     public Client search(String documentClient) {
         if (documentClient == null) {
             return null;
@@ -69,7 +64,6 @@ public class BinaryTree {
         return null;
     }
 
-    // DELETE
     public void delete(String documentClient) {
         if (search(documentClient) != null) {
             root = delete(root, documentClient);
@@ -110,7 +104,6 @@ public class BinaryTree {
         return balance(current);
     }
 
-    // FIND MINIMUM
     private NodeTree findMin(NodeTree current) {
         while (current.left != null) {
             current = current.left;
@@ -119,7 +112,6 @@ public class BinaryTree {
         return current;
     }
 
-    // AVL BALANCING
     private NodeTree balance(NodeTree NodeTree) {
         updateHeight(NodeTree);
 
@@ -184,7 +176,6 @@ public class BinaryTree {
         return y;
     }
 
-    // AUXILIARY METHODS
     public int size() {
         return size;
     }

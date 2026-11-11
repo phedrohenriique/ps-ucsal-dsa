@@ -1,15 +1,7 @@
 package app;
 
-// $ choco install maven ( for windows users )
-// go to scrapper/app-java
-// run script with
-// $ mvn compile
-// $ java -cp target/classes App
-
-// to run directly
-// mvn clean compile exec:java
-// mvn dependency:tree - check for maven dependencies
-// mvn -f scripts/script-pom.xml clean compile exec:java
+// to run app
+// $ mvn clean compile exec:java
 
 import app.ui.UI;
 import io.javelit.core.Server;

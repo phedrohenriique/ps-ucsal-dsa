@@ -12,7 +12,6 @@ public class Queue<T> {
         this.size = 0;
     }
 
-    // Add an element to the end of the queue
     public void addItem(T item) {
         if (item == null) {
             throw new IllegalArgumentException("Item cannot be null");
@@ -31,7 +30,6 @@ public class Queue<T> {
         size++;
     }
 
-    // Remove and return the first element
     public T removeItem() {
         if (isEmpty()) {
             return null;
@@ -48,7 +46,6 @@ public class Queue<T> {
         return item;
     }
 
-    // Return the first element without removing it
     public T getFirst() {
         return isEmpty() ? null : head.data;
     }
